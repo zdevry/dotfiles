@@ -1,0 +1,125 @@
+@import url("colours.css");
+
+* {
+	font-family: JetBrainsMono Nerd Font Propo;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+window#waybar {
+	background: transparent;
+	color: @fg;
+}
+
+tooltip {
+	background: @bg;
+	border: none;
+	border-radius: 10px;
+}
+
+tooltip * {
+	box-shadow: none;
+}
+
+tooltip label {
+	color: @fg;
+	margin: 0px 8px;
+}
+
+/* Centre */
+
+#window {
+	background: @bg;
+	padding: 0px 10px 0px 10px;
+	border: none;
+	border-radius: 10px;
+	margin-top: 5px;
+}
+
+/* Left */
+
+#workspaces {
+	background: @bg;
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-left: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#workspaces button {
+	color: @fg;
+	padding: 3px 5px 3px 5px;
+	border-radius: 0px;
+	border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+	background: @bg-hl;
+	border: 1px solid transparent;
+	border-bottom: 2px solid @bg-hl;
+}
+
+#workspaces button.focused {
+	background: @bg-accent;
+	border-bottom: 2px solid @accent;
+}
+
+#workspaces button.empty {
+	color: @fg-unf;
+}
+
+#mode {
+	background: @bg;
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-left: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* Right */
+
+#clock {
+	background: @bg;
+	border: none;
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-right: 5px;
+	padding: 0px 10px 0px 10px;
+}
+
+#systray {
+	background: @bg;
+	border: none;
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-right: 5px;
+	padding-left: 10px;	
+}
+
+#custom-swaync {
+	padding: 0px 10px;
+	border-radius: 10px;
+}
+
+#custom-swaync:hover {
+	background: @bg-hl;
+}
+
+#custom-swaync.cc-open {
+	color: @accent;
+}
+
+#custom-traysep {
+	color: @fg-unf;
+	margin-left: 10px;
+}
+
+#tray {
+	margin-left: 15px;
+}
+
+#battery {
+	/* margin-left: 15px; */
+}

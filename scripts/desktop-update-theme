@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+set -euxo pipefail
+
+desktop-set-theme "$1"
+
+pkill -SIGUSR2 waybar
+swaync-client -rs
+touch ~/.config/alacritty/alacritty.toml

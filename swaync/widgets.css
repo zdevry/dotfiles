@@ -1,0 +1,185 @@
+/* Title widget */
+.widget-title {
+  background-color: @bg;
+  color: @fg;
+  margin: 8px;
+  font-size: 16px;
+}
+
+.widget-title > button {
+  font-size: 14px;
+  color: @fg;
+  background: @bg-hl;
+  border: none;
+  border-radius: 8px;
+}
+
+.widget-title > button:hover {
+  background: @bg-accent;
+}
+
+/* DND widget */
+.widget-dnd {
+  background-color: @bg;
+  color: @fg;
+  margin: 8px;
+  font-size: 14px;
+}
+
+.widget-dnd > switch {
+  font-size: initial;
+  border-radius: 6px;
+  background: @bg-hl;
+  border: none;
+}
+
+.widget-dnd > switch:checked {
+  background: @accent;
+  border: none;
+}
+
+.widget-dnd > switch slider {
+  background: @fg-unf;
+  border: none;
+  border-radius: 100%;
+}
+
+/* Mpris widget */
+@define-color mpris-album-art-overlay rgba(0, 0, 0, 0.55);
+@define-color mpris-button-hover rgba(0, 0, 0, 0.50);
+.widget-mpris {
+  /* The parent to all players */
+}
+
+.widget-mpris .widget-mpris-player {
+  padding: 8px;
+  padding: 16px;
+  margin: 16px 20px;
+  background-color: @bg;
+  border-radius: 12px;
+}
+
+.widget-mpris .widget-mpris-player button:hover {
+  /* The media player buttons (play, pause, next, etc...) */
+  background: @bg-hl;
+}
+
+.widget-mpris .widget-mpris-player .widget-mpris-album-art {
+  border-radius: 12px;
+}
+
+.widget-mpris .widget-mpris-player .widget-mpris-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.widget-mpris .widget-mpris-player .widget-mpris-subtitle {
+  font-size: 1.1rem;
+}
+
+.widget-mpris .widget-mpris-player > box > button {
+  /* Change player control buttons */
+}
+
+.widget-mpris .widget-mpris-player > box > button:hover {
+  background-color: @bg-hl;
+}
+
+.widget-mpris > box > button {
+  /* Change player side buttons */
+}
+
+.widget-mpris > box > button:disabled {
+  /* Change player side buttons insensitive */
+}
+
+/* Buttons Grid widget */
+.widget-buttons-grid {
+	margin: 0px;
+	background-color: @bg;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+	font-size: 18px;
+	color: @fg;
+	background-color: @bg-hl;
+	padding: 0px;
+	margin: 0px;
+	border-radius: 8px;
+	border: none;
+	padding: 4px 0px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+	background-color: @bg-accent;
+}
+
+/* Volume widget */
+.widget-volume {
+  background-color: @bg;
+  color: @fg;
+}
+
+.widget-volume > box > button {
+  color: @fg;
+  background: transparent;
+  border: none;
+}
+
+.widget-volume scale {
+  margin-left: 8px;
+}
+
+.widget-volume trough {
+  font-size: initial;
+  border-radius: 4px;
+  background: @bg-hl;
+  border: 1px solid @bg-hl;
+}
+
+.widget-volume trough highlight {
+  background: @accent;
+  border: 1px solid @accent;
+}
+
+.widget-volume slider {
+  background: @fg-unf;
+  border: none;
+  border-radius: 100%;
+}
+
+.per-app-volume {
+  font-size: 14px;
+  background-color: @bg;
+  color: @fg;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 16px 16px 0px;
+}
+
+/* Backlight widget */
+.widget-backlight {
+  color: @fg;
+  background-color: @bg;
+}
+
+.widget-backlight scale {
+  margin-left: 8px;
+}
+
+.widget-backlight trough {
+  font-size: initial;
+  border-radius: 4px;
+  background: @bg-hl;
+  border: 1px solid @bg-hl;
+}
+
+.widget-backlight trough highlight {
+  background: @accent;
+  border: 1px solid @accent;
+}
+
+.widget-backlight slider {
+  background: @fg-unf;
+  border: none;
+  border-radius: 100%;
+}

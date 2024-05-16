@@ -1,0 +1,10 @@
+* {
+	bg: #181818;
+	bg-hl: #313131;
+
+	fg: #cccccc;
+	fg-unf: #868686;
+
+	accent: #0078d4;
+	bg-accent: #0a314f;
+}

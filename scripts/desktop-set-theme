@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+set -euxo pipefail
+
+THEME="$1"
+
+SWAYNC="$HOME/.config/swaync"
+WAYBAR="$HOME/.config/waybar"
+ROFI="$HOME/.config/rofi"
+ALACRITTY="$HOME/.config/alacritty"
+
+test -f "$SWAYNC/$THEME.css"
+test -f "$WAYBAR/$THEME.css"
+test -f "$ROFI/$THEME.rasi"
+test -f "$ALACRITTY/$THEME.toml"
+
+[[ -L "$SWAYNC/colours.css" ]] && unlink "$SWAYNC/colours.css"
+[[ -L "$WAYBAR/colours.css" ]] && unlink "$WAYBAR/colours.css"
+[[ -L "$ROFI/colours.rasi" ]] && unlink "$ROFI/colours.rasi"
+[[ -L "$ALACRITTY/colours.toml" ]] && unlink "$ALACRITTY/colours.toml"
+
+ln -s "$THEME.css" "$SWAYNC/colours.css"
+ln -s "$THEME.css" "$WAYBAR/colours.css"
+ln -s "$THEME.rasi" "$ROFI/colours.rasi"
+ln -s "$THEME.toml" "$ALACRITTY/colours.toml"

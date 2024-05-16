@@ -1,0 +1,27 @@
+[colors]
+primary.foreground = "#cdd6f4"
+primary.background = "#1e1e2e"
+
+cursor = { text = "#1e1e2e", cursor = "#cdd6f4" }
+vi_mode_cursor = { text = "#1e1e2e", cursor = "#cdd6f4" }
+selection = { text = "#cdd6f4", background = "#45475a" }
+
+[colors.normal]
+black = "#313244"
+red = "#e64553"
+green = "#40a02b"
+yellow = "#df8e1d"
+blue = "#7287fd"
+magenta = "#ea76cb"
+cyan = "#209fb5"
+white = "#9399b2"
+
+[colors.bright]
+black = "#9399b2"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#cba6f7"
+cyan = "#74c7ec"
+white = "#f5e0dc"

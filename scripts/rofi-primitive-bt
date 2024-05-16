@@ -1,0 +1,69 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+[[ -z "${ROFI_PRIM_BT_TIMEOUT+x}" ]] && ROFI_PRIM_BT_TIMEOUT=8
+
+is_power_on() {
+	bluetoothctl show | grep -Fq "Powered: no" && return 1
+	return 0
+}
+
+is_connected() {
+	bluetoothctl info "$1" | grep -Fq "Connected: yes"
+}
+
+bt_connect() {
+	DEVNAME="$(cut -d" " -f3- <<< "$1")"
+	notify-send "Connecting to $DEVNAME (timeout: $ROFI_PRIM_BT_TIMEOUT seconds)"
+	
+	MAC="$(cut -d' ' -f2 <<< "$1")"
+	bluetoothctl -t "$ROFI_PRIM_BT_TIMEOUT" connect "$MAC"
+
+	if is_connected "$MAC"; then
+		notify-send "Successfully connected to $DEVNAME"
+	else
+		notify-send "Failed to connect to $DEVNAME"
+	fi
+}
+
+bt_disconnect() {
+	DEVNAME="$(cut -d" " -f4- <<< "$1")"
+	notify-send "Disconnecting $DEVNAME (timeout: $ROFI_PRIM_BT_TIMEOUT seconds)"
+	
+	MAC="$(cut -d' ' -f3 <<< "$1")"
+	bluetoothctl -t "$ROFI_PRIM_BT_TIMEOUT" disconnect "$MAC"
+}
+
+power_off_opts() {
+	echo "Power on Bluetooth"
+	echo "Exit"
+}
+
+power_off_menu() {
+	if ! SELECTION="$(power_off_opts | rofi -dmenu)"; then exit 0; fi
+	case $SELECTION in
+		Power*) bluetoothctl power on;;
+		Exit) exit 0;;
+	esac
+}
+
+power_on_opts() {
+	bluetoothctl devices Connected | sed "s/^/Disconnect /"
+	echo "Power off Bluetooth"
+	bluetoothctl devices Paired
+	echo "Exit"
+}
+
+power_on_menu() {
+	if ! SELECTION="$(power_on_opts | rofi -dmenu)"; then exit 0; fi
+	case $SELECTION in
+		Disconnect*) bt_disconnect "$SELECTION";;
+		Power*) bluetoothctl power off;;
+		Device*) bt_connect "$SELECTION";;
+		Exit) exit 0;;
+	esac
+}
+
+while true; do
+	is_power_on && power_on_menu || power_off_menu
+done
