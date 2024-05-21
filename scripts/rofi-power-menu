@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+menuopts() {
+	echo "Cancel"
+	echo "󰈆 Exit Sway"
+	echo "󰐥 Shutdown"
+	echo "󰜉 Reboot"
+}
+
+CHOICE="$(menuopts | rofi -dmenu -p "󰐥")"
+
+case "$CHOICE" in
+	󰈆*) swaymsg exit;;
+	󰐥*) systemctl poweroff;;
+	󰜉*) systemctl reboot;;
+esac

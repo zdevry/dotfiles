@@ -1,0 +1,40 @@
+color-link color-column "black"
+color-link line-number "bold brightblack"
+color-link current-line-number "bold brightcyan,black"
+color-link cursor-line "black"
+color-link divider "black,brightwhite"
+color-link error-message "bold brightwhite,red"
+color-link gutter-error "bold brightwhite,red"
+color-link gutter-warning "bold brightwhite,yellow"
+color-link statusline "bold brightcyan,black"
+color-link tabbar "brightblue,black"
+color-link hlsearch "brightwhite,blue"
+color-link scrollbar "brightblack"
+color-link tab-error "brightred"
+
+color-link error "bold brightred"
+
+color-link trailingws "brightred"
+color-link comment "green"
+color-link todo "bold brightgreen"
+
+color-link constant "brightred"
+color-link constant.number "brightblue"
+color-link constant.specialChar "brightblue"
+color-link constant.string "brightyellow"
+
+color-link identifier "brightblue"
+color-link identifier.macro "brightcyan"
+
+color-link preproc "brightmagenta"
+color-link special "brightcyan"
+color-link statement "brightmagenta"
+
+color-link symbol "blue"
+color-link type.keyword "brightmagenta"
+color-link type "cyan"
+color-link underlined "underline"
+
+color-link diff-added "green"
+color-link diff-modified "yellow"
+color-link diff-deleted "red"

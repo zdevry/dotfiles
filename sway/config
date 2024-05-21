@@ -15,6 +15,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym $mod+Return exec alacritty msg create-window || alacritty
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Tab exec rofi -show window
+bindsym $mod+Escape exec rofi-sysmenu
 
 floating_modifier $mod normal
 
@@ -69,5 +70,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 exec waybar
+exec swaync
 
 include /etc/sway/config.d/*

@@ -12,6 +12,10 @@ is_connected() {
 	bluetoothctl info "$1" | grep -Fq "Connected: yes"
 }
 
+notify() {
+	notify-send "$1" -a "bluetooth"
+}
+
 bt_connect() {
 	DEVNAME="$(cut -d" " -f3- <<< "$1")"
 	notify-send "Connecting to $DEVNAME (timeout: $ROFI_PRIM_BT_TIMEOUT seconds)"
@@ -20,47 +24,60 @@ bt_connect() {
 	bluetoothctl -t "$ROFI_PRIM_BT_TIMEOUT" connect "$MAC"
 
 	if is_connected "$MAC"; then
-		notify-send "Successfully connected to $DEVNAME"
+		notify "Successfully connected to $DEVNAME"
 	else
-		notify-send "Failed to connect to $DEVNAME"
+		notify "Failed to connect to $DEVNAME"
 	fi
 }
 
 bt_disconnect() {
-	DEVNAME="$(cut -d" " -f4- <<< "$1")"
-	notify-send "Disconnecting $DEVNAME (timeout: $ROFI_PRIM_BT_TIMEOUT seconds)"
+	DEVNAME="$(cut -d" " -f3- <<< "$1")"
+	notify "Disconnecting $DEVNAME (timeout: $ROFI_PRIM_BT_TIMEOUT seconds)"
 	
-	MAC="$(cut -d' ' -f3 <<< "$1")"
+	MAC="$(cut -d' ' -f2 <<< "$1")"
 	bluetoothctl -t "$ROFI_PRIM_BT_TIMEOUT" disconnect "$MAC"
 }
 
+use_bluetoothctl() {
+	alacritty msg create-window -e "bluetoothctl" || alacritty -e "bluetoothctl" &
+	exit 0
+}
+
 power_off_opts() {
-	echo "Power on Bluetooth"
-	echo "Exit"
+	echo "󰐥 Bluetooth On"
+	echo " bluetoothctl"
+	echo "󰈆 Exit"
 }
 
 power_off_menu() {
-	if ! SELECTION="$(power_off_opts | rofi -dmenu)"; then exit 0; fi
+	if ! SELECTION="$(power_off_opts | rofi -dmenu -p 󰂯)"; then
+		exit 0;
+	fi
 	case $SELECTION in
-		Power*) bluetoothctl power on;;
-		Exit) exit 0;;
+		󰐥*) bluetoothctl power on;;
+		*) use_bluetoothctl;;
+		󰈆*) exit 0;;
 	esac
 }
 
 power_on_opts() {
-	bluetoothctl devices Connected | sed "s/^/Disconnect /"
-	echo "Power off Bluetooth"
-	bluetoothctl devices Paired
-	echo "Exit"
+	bluetoothctl devices Connected | sed "s/Device/󰂲/"
+	bluetoothctl devices Paired | sed "s/Device/󰂯/"
+	echo "󰐥 Bluetooth Off"
+	echo " bluetoothctl"
+	echo "󰈆 Exit"
 }
 
 power_on_menu() {
-	if ! SELECTION="$(power_on_opts | rofi -dmenu)"; then exit 0; fi
+	if ! SELECTION="$(power_on_opts | rofi -dmenu -p 󰂯)"; then
+		exit 0;
+	fi
 	case $SELECTION in
-		Disconnect*) bt_disconnect "$SELECTION";;
-		Power*) bluetoothctl power off;;
-		Device*) bt_connect "$SELECTION";;
-		Exit) exit 0;;
+		󰂲*) bt_disconnect "$SELECTION";;
+		󰐥*) bluetoothctl power off;;
+		󰂯*) bt_connect "$SELECTION";;
+		*) use_bluetoothctl;;
+		󰈆*) exit 0;;
 	esac
 }
 

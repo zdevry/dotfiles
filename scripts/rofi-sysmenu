@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+menuopts() {
+	echo "󰂯 Bluetooth"
+	echo "󰐥 Power"
+	echo "Cancel"
+}
+
+CHOICE="$(menuopts | rofi -dmenu -p "󰮫")"
+
+case "$CHOICE" in
+	󰂯*) rofi-primitive-bt;;
+	󰐥*) rofi-power-menu;;
+esac
