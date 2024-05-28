@@ -3,10 +3,59 @@ import = ["~/.config/alacritty/colours.toml"]
 
 [window]
 opacity = 0.8
+padding = { x = 5, y = 5 }
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font Mono", style = "Medium" }
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "SemiBold" }
+bold = { style = "ExtraBold" }
+italic = { style = "SemiBold Italic" }
+bold_italic = { style = "ExtraBold Italic" }
 size = 13.25
 
 [cursor]
 style = { shape = "Beam", blinking = "Never" }
+
+[keyboard]
+bindings = [
+	{ key = "PageUp", mods = "Control", mode = "~Search", action = "ScrollHalfPageUp" },
+	{ key = "PageDown", mods = "Control", mode = "~Search", action = "ScrollHalfPageDown" },
+	{ key = "Up", mods = "Control", mode = "~Search", action = "ScrollLineUp" },
+	{ key = "Down", mods = "Control", mode = "~Search", action = "ScrollLineDown" },
+	{ key = "PageUp", mods = "Shift|Control", mode = "~Search", action = "ScrollToTop" },
+	{ key = "PageDown", mods = "Shift|Control", mode = "~Search", action = "ScrollToBottom" },
+
+	{ key = "PageUp", mode = "Vi|~Search", action = "ScrollPageUp" },
+	{ key = "PageDown", mode = "Vi|~Search", action = "ScrollPageDown" },
+	
+	{ key = "Left", mods = "Control", mode = "Vi|~Search", action = "SemanticLeft" },
+	{ key = "Right", mods = "Control", mode = "Vi|~Search", action = "SemanticRightEnd" },
+	
+	{ key = "Escape", mode = "Vi|~Search", action = "None" },
+	{ key = "Escape", mode = "Vi|~Search", action = "ToggleViMode" },
+	{ key = "Escape", mode = "Vi|~Search", action = "ClearSelection" },
+	{ key = "Escape", mode = "Vi|~Search", action = "ScrollToBottom" },
+	
+	{ key = "Space", mode = "Vi|~Search", action = "ToggleNormalSelection" },
+	{ key = "Space", mods = "Shift", mode = "Vi|~Search", action = "ToggleLineSelection" },
+	{ key = "Space", mods = "Control", mode = "Vi|~Search", action = "ToggleBlockSelection" },
+
+	{ key = "Space", mods = "Control", mode = "~Vi|~Search", action = "ToggleViMode" },
+	
+	{ key = "Backspace", mods = "Control", mode = "Search", action = "SearchDeleteWord" },
+	{ key = "Backspace", mods = "Alt", mode = "Search", action = "SearchClear" },
+
+	{ key = "Enter", mode = "Vi|~Search", action = "SearchNext" },
+	{ key = "Enter", mods = "Shift", mode = "Vi|~Search", action = "SearchPrevious" },
+
+	{ key = "C", mods = "Control", mode = "Vi|~Search", action = "None" },
+	{ key = "C", mods = "Control", mode = "Vi|~Search", action = "Copy" },
+	{ key = "C", mods = "Control", mode = "Vi|~Search", action = "ClearSelection" },
+
+	{ key = "F", mods = "Control", mode = "Vi|~Search", action = "None" },
+	{ key = "F", mods = "Control", mode = "Vi|~Search", action = "SearchForward" },
+	{ key = "F", mods = "Shift|Control", mode = "Vi|~Search", action = "None" },
+	{ key = "F", mods = "Shift|Control", mode = "Vi|~Search", action = "SearchBackward" },
+	{ key = "F", mods = "Shift|Control", mode = "~Vi|~Search", action = "SearchForward"},
+
+	{ key = "Enter", mods = "Control", action = "CreateNewWindow" }
+]

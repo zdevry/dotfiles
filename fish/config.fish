@@ -1,4 +1,5 @@
 set -gx MANPAGER "sh -c 'col -bx | bat -pl man'"
+set -gx GROFF_NO_SGR 1
 set -gx EDITOR micro
 
 set -gx FZF_DEFAULT_COMMAND "fd -LH 2> /dev/null"

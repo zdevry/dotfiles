@@ -6,6 +6,12 @@ cursor = { text = "#1e1e2e", cursor = "#cdd6f4" }
 vi_mode_cursor = { text = "#1e1e2e", cursor = "#cdd6f4" }
 selection = { text = "#cdd6f4", background = "#45475a" }
 
+footer_bar = { foreground = "#1e1e2e", background = "#cdd6f4" }
+
+[colors.search]
+matches = { foreground = "#f5e0dc", background = "#45475a" }
+focused_match = { foreground = "#f5e0dc", background = "#7287fd" }
+
 [colors.normal]
 black = "#313244"
 red = "#e64553"
