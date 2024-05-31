@@ -61,7 +61,7 @@ power_off_menu() {
 }
 
 power_on_opts() {
-	bluetoothctl devices Connected | sed "s/Device/󰂲/"
+	bluetoothctl devices Connected | sed "s/Device//"
 	bluetoothctl devices Paired | sed "s/Device/󰂯/"
 	echo "󰐥 Bluetooth Off"
 	echo " bluetoothctl"
@@ -73,7 +73,7 @@ power_on_menu() {
 		exit 0;
 	fi
 	case $SELECTION in
-		󰂲*) bt_disconnect "$SELECTION";;
+		*) bt_disconnect "$SELECTION";;
 		󰐥*) bluetoothctl power off;;
 		󰂯*) bt_connect "$SELECTION";;
 		*) use_bluetoothctl;;

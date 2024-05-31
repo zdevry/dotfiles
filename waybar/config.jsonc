@@ -1,6 +1,6 @@
 {
 	"layer": "top",
-	"modules-left": ["sway/workspaces", "sway/mode"],
+	"modules-left": ["sway/workspaces", "sway/scratchpad"],
 	"modules-center": ["sway/window"],
 	"modules-right": ["group/systray", "clock"],
 
@@ -14,10 +14,19 @@
 			"5": ["eDP-1"]
 		}
 	},
+	"sway/scratchpad": {
+	    "format": "󱂬 {count}",
+	    "tooltip-format": "{app}: {title}",
+	    "on-click": "swaymsg scratchpad show",
+	    "on-click-right": "swaymsg move scratchpad"
+	},
 
 	// Centre
 	"sway/window": {
 		"max-length": 50,
+		"on-click": "rofi -show window",
+		"on-click-middle": "rofi -show drun",
+		"on-click-right": "rofi-sway-window-menu",
 		"rewrite": {
 			"^$": "󰣇 "
 		}
@@ -27,15 +36,38 @@
 	"group/systray": {
 		"orientation": "inherit",
 		"modules": [
+		    "bluetooth",
+		    "network",
 			"battery",
 			"tray",
 			"custom/traysep",
 			"custom/swaync"
 		]
 	},
+	"bluetooth": {
+	    "format": "[󰂯]",
+	    "format-disabled": "",
+	    "format-off": "",
+	    "format-connected": "󰂯 {num_connections}",
+	    "format-connected-battery": "󰂯 {device_battery_percentage}%",
+	    
+	    "tooltip-format": "Bluetooth {status}",
+	    "tooltip-format-connected": "{device_enumerate}",
+	    "tooltip-format-enumerate-connected-battery": "{device_alias}: 󰁹 {device_battery_percentage}%",
+	    "on-click": "rofi-primitive-bt"
+	},
+	"network": {
+	    "interval": 30,
+	    "format": "󰛳 {ifname}",
+	    "format-wifi": "󰤨 {signalStrength}%",
+	    "format-ethernet": "󰛳",
+	    "format-disconnected": "",
+	    "tooltip-format": "[{ifname}] {ipaddr}",
+	    "tooltip-format-wifi": "[{essid}] {ipaddr}"
+	},
 	"battery": {
 		"tooltip": false,
-		"format": "󰂅",
+		"format": "󰁹",
 		"format-discharging": "󰁹 {capacity}%"
 	},
 	"tray": {

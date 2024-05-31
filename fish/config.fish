@@ -31,4 +31,8 @@ if status is-interactive
     abbr m micro
     abbr b bat
     abbr pacclear "paccache -ruk0; paccache -rk2"
+
+    if [ $TERM = "alacritty" ]
+        printf "\e[?1042l"
+    end
 end

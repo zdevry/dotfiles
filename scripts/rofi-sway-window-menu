@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+
+opts() {
+    echo "󰜺 Cancel"
+    echo " Toggle tiling/floating"
+    echo "󰊓 Fullscreen"
+    echo " Close window"
+    for i in $(seq 1 9); do
+        echo " Move to workspace $i"
+    done
+    echo "󱂬 Move to scratchpad"
+}
+
+CHOICE="$(opts | rofi -dmenu -p "󱂬")"
+
+case "$CHOICE" in
+    *) swaymsg floating toggle;;
+    󰊓*) swaymsg fullscreen;;
+    *) swaymsg kill;;
+    󱂬*) swaymsg move scratchpad;;
+    *)
+        WORKSPACE="$(cut -d' ' -f5 <<< "$CHOICE")"
+        swaymsg "move container to workspace $WORKSPACE; workspace $WORKSPACE"
+        ;;
+esac
