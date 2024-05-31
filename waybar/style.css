@@ -13,7 +13,7 @@ window#waybar {
 
 tooltip {
 	background: @bg;
-	border: none;
+	border: 1px solid @fg;
 	border-radius: 10px;
 }
 
@@ -23,7 +23,7 @@ tooltip * {
 
 tooltip label {
 	color: @fg;
-	margin: 0px 8px;
+	margin: 0px;
 }
 
 /* Centre */
@@ -54,7 +54,8 @@ tooltip label {
 
 #workspaces button {
 	color: @fg;
-	padding: 3px 5px 3px 5px;
+	padding: 2px;
+	transition: none;
 	border-radius: 0px;
 	border-bottom: 2px solid transparent;
 }

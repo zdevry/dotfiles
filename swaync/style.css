@@ -2,6 +2,7 @@
 
 * {
   font-family: JetBrainsMono Nerd Font Propo;
+  font-weight: 600;
 }
 
 .notification-row {
@@ -33,6 +34,7 @@
 .notification-row .notification-background .close-button:hover {
   box-shadow: none;
   background: @bg-accent;
+  color: @accent;
 }
 
 .notification-row .notification-background .notification {
@@ -219,6 +221,9 @@
 
 .notification-group .notification-group-headers .notification-group-header {
   color: @fg;
+  font-size: 16px;
+  margin-left: 8px;
+  font-weight: bold;
 }
 
 .notification-group .notification-group-buttons button {
@@ -230,6 +235,7 @@
 
 .notification-group .notification-group-buttons button:hover {
   background: @bg-accent;
+  color: @accent;
 }
 
 .notification-group.collapsed .notification-row .notification {
