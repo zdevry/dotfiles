@@ -4,6 +4,7 @@ set -euxo pipefail
 
 desktop-set-theme "$1"
 
+swaymsg reload
 pkill -SIGUSR2 waybar
 swaync-client -rs
 touch ~/.config/alacritty/alacritty.toml

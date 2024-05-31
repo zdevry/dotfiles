@@ -1,3 +1,8 @@
 {
-    "colorscheme": "ansi-theme"
+    "basename": true,
+    "colorscheme": "ansi-theme",
+    "ftoptions": false,
+    "statusformatl": "$(filename) $(modified)| [$(line)/$(lines)]: $(col)",
+    "statusformatr": "$(opt:filetype) | $(opt:encoding) $(opt:fileformat)",
+    "tabstospaces": true
 }

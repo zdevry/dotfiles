@@ -2,5 +2,7 @@
     "Alt-/": "lua:comment.comment",
     "CtrlDelete": "DeleteWordRight",
     "CtrlUnderscore": "lua:comment.comment",
-    "OldBackspace": "DeleteWordLeft"
+    "OldBackspace": "DeleteWordLeft",
+    "Alt-d": "DuplicateLine",
+    "Ctrl-d": "SpawnMultiCursor"
 }
