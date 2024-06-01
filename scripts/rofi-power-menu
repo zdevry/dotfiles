@@ -6,6 +6,9 @@ menuopts() {
 	echo "󰈆 Exit Sway"
 	echo "󰐥 Shutdown"
 	echo "󰜉 Reboot"
+	echo "󰒲 Sleep"
+	echo "󰤄 Lock then Sleep"
+	echo "󰌾 Lock Screen"
 }
 
 CHOICE="$(menuopts | rofi -dmenu -p "󰐥")"
@@ -14,4 +17,10 @@ case "$CHOICE" in
 	󰈆*) swaymsg exit;;
 	󰐥*) systemctl poweroff;;
 	󰜉*) systemctl reboot;;
+	󰒲*) systemctl suspend;;
+	󰤄*)
+	    swaylock -d &
+        systemctl suspend
+	    ;;
+	󰌾*) swaylock -d;;
 esac

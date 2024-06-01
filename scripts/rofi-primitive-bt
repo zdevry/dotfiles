@@ -12,28 +12,19 @@ is_connected() {
 	bluetoothctl info "$1" | grep -Fq "Connected: yes"
 }
 
-notify() {
-	notify-send "$1" -a "bluetooth"
-}
-
 bt_connect() {
 	DEVNAME="$(cut -d" " -f3- <<< "$1")"
-	notify-send "Connecting to $DEVNAME (timeout: $ROFI_PRIM_BT_TIMEOUT seconds)"
 	
 	MAC="$(cut -d' ' -f2 <<< "$1")"
 	bluetoothctl -t "$ROFI_PRIM_BT_TIMEOUT" connect "$MAC"
 
-	if is_connected "$MAC"; then
-		notify "Successfully connected to $DEVNAME"
-	else
-		notify "Failed to connect to $DEVNAME"
+	if ! is_connected "$MAC"; then
+		notify-send "Failed to connect to $DEVNAME" -a "bt applet"
 	fi
 }
 
 bt_disconnect() {
 	DEVNAME="$(cut -d" " -f3- <<< "$1")"
-	notify "Disconnecting $DEVNAME (timeout: $ROFI_PRIM_BT_TIMEOUT seconds)"
-	
 	MAC="$(cut -d' ' -f2 <<< "$1")"
 	bluetoothctl -t "$ROFI_PRIM_BT_TIMEOUT" disconnect "$MAC"
 }
@@ -44,9 +35,9 @@ use_bluetoothctl() {
 }
 
 power_off_opts() {
+	echo "Cancel"
 	echo "󰐥 Bluetooth On"
 	echo " bluetoothctl"
-	echo "󰈆 Exit"
 }
 
 power_off_menu() {
@@ -54,18 +45,18 @@ power_off_menu() {
 		exit 0;
 	fi
 	case $SELECTION in
+		Cancel) exit 0;;
 		󰐥*) bluetoothctl power on;;
 		*) use_bluetoothctl;;
-		󰈆*) exit 0;;
 	esac
 }
 
 power_on_opts() {
+	echo "Cancel"
 	bluetoothctl devices Connected | sed "s/Device//"
 	bluetoothctl devices Paired | sed "s/Device/󰂯/"
 	echo "󰐥 Bluetooth Off"
 	echo " bluetoothctl"
-	echo "󰈆 Exit"
 }
 
 power_on_menu() {
@@ -73,11 +64,11 @@ power_on_menu() {
 		exit 0;
 	fi
 	case $SELECTION in
+		Cancel) exit 0;;
 		*) bt_disconnect "$SELECTION";;
 		󰐥*) bluetoothctl power off;;
 		󰂯*) bt_connect "$SELECTION";;
 		*) use_bluetoothctl;;
-		󰈆*) exit 0;;
 	esac
 }
 

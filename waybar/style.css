@@ -145,3 +145,7 @@ tooltip label {
 #network {
     margin-right: 15px;
 }
+
+#network:hover {
+    color: @accent;
+}

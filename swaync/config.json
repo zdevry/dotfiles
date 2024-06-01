@@ -44,9 +44,19 @@
 		"buttons-grid": {
 			"actions": [
 				{
+					"label": "󰤨",
+					"type": "normal",
+					"command": "rofi-iwd-menu"
+				},
+				{
 					"label": "󰂯",
 					"type": "normal",
 					"command": "rofi-primitive-bt"
+				},
+				{
+					"label": "󰐥",
+					"type": "normal",
+					"command": "rofi-power-menu"
 				}
 			]
 		},

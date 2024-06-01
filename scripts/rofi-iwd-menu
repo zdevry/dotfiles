@@ -1,0 +1,84 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+is_power_on() {
+    iwctl device wlan0 show | rg "Powered *on" > /dev/null && return 0 || return 1
+}
+
+connect_wifi_psk() {
+    if iwctl known-networks list | rg "$1 *psk"; then
+        iwctl --dont-ask station wlan0 connect "$1"
+    else
+        if ! PASSWORD=$(rofi -dmenu -password -p password); then
+            exit
+        fi
+        iwctl --dont-ask --passphrase "$PASSWORD" station wlan0 connect "$1"
+    fi
+}
+
+connect_wifi() {
+    iwctl --dont-ask station wlan0 connect "$1"
+}
+
+wifi_off_opts() {
+    echo "Cancel"
+    echo "󰐥 WiFi on"
+    echo " iwctl"
+}
+
+wifi_on_opts() {
+    echo "Cancel"
+    echo "󰜉 Rescan networks"
+    echo "󰐥 WiFi off"
+    echo " iwctl"
+    iwctl station wlan0 get-networks \
+    | tail -n +5 \
+    | sed -r "1s/^\x1B\[0m//" \
+    | sed -re "s/^  (\x1B\[1;90m)?( |>) (\x1B\[0m)?  (.{32})  (.)[^\*]*(\*+).*$/\2\5\6% \4/" \
+        -e "s/ *$//" \
+        -e "s/^>[^%]*%/󰜺/" \
+        -e "s/^ p\*%/󰤡/" \
+        -e "s/^ p\*\*%/󰤤/" \
+        -e "s/^ p\*\*\*%/󰤧/" \
+        -e "s/^ p\*\*\*\*%/󰤪/" \
+        -e "s/^ o\*%/󰤟/" \
+        -e "s/^ o\*\*%/󰤢/" \
+        -e "s/^ o\*\*\*%/󰤥/" \
+        -e "s/^ o\*\*\*\*%/󰤨/"
+}
+
+rofi_opts() {
+    if is_power_on; then wifi_on_opts; else wifi_off_opts; fi
+}
+
+while true; do
+    CHOICE="$(rofi_opts | rofi -dmenu -p 󰤨)"
+
+    case $CHOICE in
+        Cancel) exit 0;;
+        󰐥*)
+            if is_power_on; then
+                iwctl device wlan0 set-property Powered off
+            else
+                iwctl device wlan0 set-property Powered on
+            fi;;
+        󰜉*)
+            iwctl station wlan0 scan
+            sleep 2;;
+        *)
+            alacritty msg create-window -e iwctl || alacritty -e iwctl &
+            exit 0
+            ;;
+        󰜺*) iwctl station wlan0 disconnect;;
+        [󰤟󰤢󰤥󰤨]*)
+            SSID=$(cut -c 6- <<< "$CHOICE")
+            if ! connect_wifi "$SSID"; then
+                notify-send "Unable to connect to $SSID" -a "iwd applet"
+            fi;;
+        [󰤡󰤤󰤧󰤪]*)
+            SSID=$(cut -c 6- <<< "$CHOICE")
+            if ! connect_wifi_psk "$SSID"; then
+                notify-send "Unable to connect to $SSID" -a "iwd applet"
+            fi;;
+    esac
+done

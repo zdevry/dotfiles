@@ -1,7 +1,7 @@
 @import "colours.rasi"
 
 * {
-	font: "JetBrainsMono Nerd Font Propo Medium 12";
+	font: "JetBrainsMonoNL Nerd Font Propo Medium 12";
 }
 
 window {

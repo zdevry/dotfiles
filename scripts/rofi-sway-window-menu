@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 opts() {
-    echo "󰜺 Cancel"
+    echo "Cancel"
     echo " Toggle tiling/floating"
     echo "󰊓 Fullscreen"
     echo " Close window"
