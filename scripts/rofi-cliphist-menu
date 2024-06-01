@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+main_menu_opts() {
+    echo "Cancel"
+    echo "Wipe Clipboard History"
+    cliphist list
+}
+
+CHOICE=$(main_menu_opts | rofi -dmenu -p 󰨸)
+
+case "$CHOICE" in
+    Wipe*) cliphist wipe;;
+    *) echo "$CHOICE" | cliphist decode | wl-copy;;
+esac

@@ -36,6 +36,7 @@
 	"group/systray": {
 		"orientation": "inherit",
 		"modules": [
+		    "wireplumber",
 		    "bluetooth",
 		    "network",
 			"battery",
@@ -43,6 +44,12 @@
 			"custom/traysep",
 			"custom/swaync"
 		]
+	},
+	"wireplumber": {
+        "format": "",
+        "format-muted": "",
+        "tooltip": false,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ false"
 	},
 	"bluetooth": {
 	    "format": "[󰂯]",

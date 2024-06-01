@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+TMPFILE_PATH="$XDG_RUNTIME_DIR/notif-set-volume-timestamp"
+UPTIME=$(cut -d" " -f1 /proc/uptime)
+
+if [[ $(pactl get-sink-mute @DEFAULT_SINK@) == "Mute: yes" ]]; then
+    MSG_MUTE="Unmuted"
+else
+    MSG_MUTE="Muted"
+fi
+
+get_volume() {
+    pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1 {print $5}'
+}
+
+create_new_notif() {
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    VOL=$(get_volume)
+    NOTIF_ID=$(notify-send "$MSG_MUTE (Vol: $VOL)" -h "int:value:${VOL%?}" -pa "volume")
+    
+    echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
+}
+
+if [[ ! -f "$TMPFILE_PATH" ]]; then
+    create_new_notif
+    exit
+fi
+
+TIMESTAMP=$(cat "$TMPFILE_PATH")
+NOTIF_TIME=$(cut -d" " -f1 <<< "$TIMESTAMP")
+NOTIF_ID=$(cut -d" " -f2 <<< "$TIMESTAMP")
+
+if [[ $(lua -e "print($UPTIME - $NOTIF_TIME > 10)") == true ]]; then
+    create_new_notif
+else
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    VOL=$(get_volume)
+    notify-send "$MSG_MUTE (Vol: $VOL)" -h "int:value:${VOL%?}" \
+        -r "$NOTIF_ID" -a "volume"
+
+    echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
+fi

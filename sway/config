@@ -70,6 +70,19 @@ bindsym {
     mod4+return exec alacritty msg create-window || alacritty
     mod4+tab exec rofi -show window
     mod4+escape exec rofi-sysmenu
+    mod4+c exec rofi-cliphist-menu
+
+    mod4+F1 exec notif-toggle-mute
+    mod4+F2 exec notif-set-volume -3%
+    mod4+F3 exec notif-set-volume +3%
+    mod4+F9 exec notif-set-backlight 5%-
+    mod4+F10 exec notif-set-backlight 5%+
+
+    XF86AudioMute exec notif-toggle-mute
+    XF86AudioLowerVolume exec notif-set-volume -3%
+    XF86AudioRaiseVolume exec notif-set-volume +3%
+    XF86MonBrightnessDown exec notif-set-backlight 5%-
+    XF86MonBrightnessUp exec notif-set-backlight 5%+
 }
 
 default_border pixel 2
@@ -91,6 +104,8 @@ for_window {
 exec {
     waybar
     swaync
+    wl-paste --type text --watch cliphist store
+    wl-paste --type image --watch cliphist store
 }
 
 include /etc/sway/config.d/*

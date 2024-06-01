@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+TMPFILE_PATH="$XDG_RUNTIME_DIR/notif-set-backlight-timestamp"
+TARGET_BACKLIGHT="$1"
+UPTIME=$(cut -d" " -f1 /proc/uptime)
+
+get_backlight() {
+    brightnessctl -m | cut -d, -f4
+}
+
+set_backlight() {
+    brightnessctl s "$TARGET_BACKLIGHT"
+}
+
+create_new_notif() {
+    set_backlight
+    BKL=$(get_backlight)
+    NOTIF_ID=$(notify-send "Backlight: $BKL" -h "int:value:${BKL%?}" -pa "backlight")
+    
+    echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
+}
+
+if [[ ! -f "$TMPFILE_PATH" ]]; then
+    create_new_notif
+    exit
+fi
+
+TIMESTAMP=$(cat "$TMPFILE_PATH")
+NOTIF_TIME=$(cut -d" " -f1 <<< "$TIMESTAMP")
+NOTIF_ID=$(cut -d" " -f2 <<< "$TIMESTAMP")
+
+if [[ $(lua -e "print($UPTIME - $NOTIF_TIME > 10)") == true ]]; then
+    create_new_notif
+else
+    set_backlight
+    
+    BKL=$(get_backlight)
+    notify-send "Backlight: $BKL" -h "int:value:${BKL%?}" \
+        -r "$NOTIF_ID" -a "backlight"
+
+    echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
+fi

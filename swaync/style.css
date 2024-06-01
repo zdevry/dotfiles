@@ -134,7 +134,17 @@
 
 .notification-row .notification-background .notification .notification-default-action .notification-content progressbar {
   /* The optional notification progress bar */
-  margin-top: 4px;
+  margin: 4px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content trough {
+  background: @bg-hl;
+  border: 1px solid @bg-hl;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content progress {
+  background: @accent;
+  border: 1px solid @accent;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .body-image {

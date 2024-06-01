@@ -4,6 +4,7 @@ set -euo pipefail
 menuopts() {
     echo "󰤨 WiFi"
 	echo "󰂯 Bluetooth"
+	echo "󰨸 Clipboard history"
 	echo "󰐥 Power"
 	echo "Cancel"
 }
@@ -13,5 +14,6 @@ CHOICE="$(menuopts | rofi -dmenu -p "󰮫")"
 case "$CHOICE" in
     󰤨*) rofi-iwd-menu;;
 	󰂯*) rofi-primitive-bt;;
+	󰨸*) rofi-cliphist-menu;;
 	󰐥*) rofi-power-menu;;
 esac

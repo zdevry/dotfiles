@@ -54,6 +54,11 @@
 					"command": "rofi-primitive-bt"
 				},
 				{
+					"label": "󰨸",
+					"type": "normal",
+					"command": "rofi-cliphist-menu"
+				},
+				{
 					"label": "󰐥",
 					"type": "normal",
 					"command": "rofi-power-menu"

@@ -149,3 +149,15 @@ tooltip label {
 #network:hover {
     color: @accent;
 }
+
+#wireplumber {
+    margin-right: 0px;
+}
+
+#wireplumber.muted {
+    margin-right: 15px;
+}
+
+#wireplumber.muted:hover {
+    color: @accent;
+}
