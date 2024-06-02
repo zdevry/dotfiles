@@ -1,0 +1,15 @@
+{
+    "modules": [
+        "datetime",
+        "separator",
+        "host",
+        "os",
+        "kernel",
+        "cpu",
+        "gpu",
+        "memory",
+        "battery",
+        "disk",
+        "packages"
+    ]
+}
