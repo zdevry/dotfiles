@@ -15,7 +15,7 @@ eval "$(ssh-agent)" > /dev/null
 
 if [[ $STATUS_READ == 0 ]] && [[ -z "$KEY" ]]; then
     export WLR_DRM_DEVICES="/dev/dri/card0:/dev/dri/card1"
-    sway --unsupported-gpu > /dev/null
+    sway --unsupported-gpu > /dev/null 2>&1
 fi
 
 exec fish

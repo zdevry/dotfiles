@@ -64,13 +64,21 @@ bindsym {
     mod4+n [ con_mark = "N" ] focus
     mod4+shift+n mark N
 
+    mod4+b [ con_mark = "browser" ] focus
+
     mod4+space floating toggle
     mod4+shift+space fullscreen
+
+    mod4+minus exec swaync-client --hide-latest
+    mod4+ctrl+minus exec swaync-client -C
+    mod4+shift+minus exec swaync-client -t -sw
     
     mod4+return exec alacritty msg create-window || alacritty
     mod4+tab exec rofi -show window
     mod4+escape exec rofi-sysmenu
     mod4+c exec rofi-cliphist-menu
+    print exec grimshot slurp
+    mod4+print exec grimshot screen
 
     mod4+F1 exec notif-toggle-mute
     mod4+F2 exec notif-set-volume -3%
@@ -99,6 +107,9 @@ include colours.conf
 
 for_window {
     [ workspace = "^[45]$" ] floating enable
+    [ app_id = "imv" ] floating enable; border pixel 2
+    [ app_id = "mpv" ] floating enable
+    [ app_id = "firefox" ] mark "browser"
 }
 
 exec {

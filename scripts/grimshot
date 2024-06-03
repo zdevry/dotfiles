@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+set -euxo pipefail
+
+IMAGE_NAME=$(date "+screenshot-%Y-%m-%d-%H%M%S.png")
+SCREENSHOT_DIR="$HOME/media/screenshot"
+if [[ "$1" == "screen" ]]; then
+    grim "$SCREENSHOT_DIR/$IMAGE_NAME"
+elif [[ "$1" == "slurp" ]]; then
+    REGION=$(slurp -d)
+    grim -g "$REGION" "$SCREENSHOT_DIR/$IMAGE_NAME"
+else
+    exit 1
+fi
+
+notify-send "Saved as $IMAGE_NAME" -a "grimshot" -t 3500

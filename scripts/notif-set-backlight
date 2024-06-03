@@ -16,7 +16,8 @@ set_backlight() {
 create_new_notif() {
     set_backlight
     BKL=$(get_backlight)
-    NOTIF_ID=$(notify-send "Backlight: $BKL" -h "int:value:${BKL%?}" -pa "backlight")
+    NOTIF_ID=$(notify-send "Backlight: $BKL" \
+        -h "int:value:${BKL%?}" -pa "backlight" -t 2000)
     
     echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
 }
@@ -37,7 +38,7 @@ else
     
     BKL=$(get_backlight)
     notify-send "Backlight: $BKL" -h "int:value:${BKL%?}" \
-        -r "$NOTIF_ID" -a "backlight"
+        -r "$NOTIF_ID" -a "backlight" -t 2000
 
     echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
 fi

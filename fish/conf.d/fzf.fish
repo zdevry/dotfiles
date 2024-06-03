@@ -8,7 +8,7 @@ set -gx FZF_DEFAULT_OPTS \
 
 if [ $TERM = "linux" ]
     set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS" \
-        "--prompt='> ' --pointer=>"
+        "--prompt='> ' --pointer='>'"
 else
     set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS" \
         "--prompt='→ ' --pointer=→"

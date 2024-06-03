@@ -12,3 +12,8 @@ alias bat "bat --theme ansi"
 
 abbr m micro
 abbr b bat
+
+abbr gits "git status"
+abbr gitall "git add ."
+abbr gitc "git commit -m"
+abbr gitpom "git push origin main"

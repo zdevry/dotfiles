@@ -17,7 +17,8 @@ get_volume() {
 create_new_notif() {
     pactl set-sink-mute @DEFAULT_SINK@ toggle
     VOL=$(get_volume)
-    NOTIF_ID=$(notify-send "$MSG_MUTE (Vol: $VOL)" -h "int:value:${VOL%?}" -pa "volume")
+    NOTIF_ID=$(notify-send "$MSG_MUTE (Vol: $VOL)" \
+        -h "int:value:${VOL%?}" -pa "volume" -t 2000)
     
     echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
 }
@@ -37,7 +38,7 @@ else
     pactl set-sink-mute @DEFAULT_SINK@ toggle
     VOL=$(get_volume)
     notify-send "$MSG_MUTE (Vol: $VOL)" -h "int:value:${VOL%?}" \
-        -r "$NOTIF_ID" -a "volume"
+        -r "$NOTIF_ID" -a "volume" -t 2000
 
     echo "$UPTIME $NOTIF_ID" > "$TMPFILE_PATH"
 fi
