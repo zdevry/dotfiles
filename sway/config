@@ -1,4 +1,5 @@
 output eDP-1 mode 1920x1080@144Hz position 0,0
+output * bg ~/media/wallpapers/wallpaper fit
 
 xwayland force
 

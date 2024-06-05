@@ -5,7 +5,7 @@ import os
 import sys
 import random
 
-WALLPAPER_DIR = os.getenv('HOME') + '/media/image/wallpaper-vault/'
+WALLPAPER_DIR = os.getenv('HOME') + '/media/wallpapers/'
 
 wallpapers = None
 with open(WALLPAPER_DIR + 'wallpapers.json') as fwp:
