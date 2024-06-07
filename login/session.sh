@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-echo -e "\e[32mEnter/Space:\e[m sway desktop session"
-echo -e "\e[32many other key:\e[m shell only session"
+echo -e "\e[32m\"fish\":\e[m shell only session"
+echo -e "\e[32mEnter :\e[m sway desktop session"
 echo
 
 echo -en "\e[32msession ::\e[m "
