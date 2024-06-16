@@ -13,7 +13,5 @@ def read_settings():
 settings = read_settings()
 
 settings.pop('workbench.colorTheme', None)
-settings.pop('workbench.iconTheme', None)
-settings.pop('window.zoomLevel', None)
 
 print(json.dumps(settings, indent=4))

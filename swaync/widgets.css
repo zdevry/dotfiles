@@ -50,49 +50,52 @@
 @define-color mpris-album-art-overlay rgba(0, 0, 0, 0.55);
 @define-color mpris-button-hover rgba(0, 0, 0, 0.50);
 .widget-mpris {
-  /* The parent to all players */
+  box-shadow: none;
 }
 
 .widget-mpris .widget-mpris-player {
   padding: 8px;
   padding: 16px;
-  margin: 16px 20px;
-  background-color: @bg;
+  margin: 0px 20px;
+  background-color: @bg-hl;
   border-radius: 12px;
-}
-
-.widget-mpris .widget-mpris-player button:hover {
-  /* The media player buttons (play, pause, next, etc...) */
-  background: @bg-hl;
+  box-shadow: none;
 }
 
 .widget-mpris .widget-mpris-player .widget-mpris-album-art {
   border-radius: 12px;
+  box-shadow: none;
 }
 
 .widget-mpris .widget-mpris-player .widget-mpris-title {
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 18px;
 }
 
 .widget-mpris .widget-mpris-player .widget-mpris-subtitle {
-  font-size: 1.1rem;
+  font-size: 14px;
 }
 
 .widget-mpris .widget-mpris-player > box > button {
-  /* Change player control buttons */
+  color: @fg;
 }
 
 .widget-mpris .widget-mpris-player > box > button:hover {
-  background-color: @bg-hl;
+  color: @accent;
+  background: @bg-accent;
 }
 
 .widget-mpris > box > button {
-  /* Change player side buttons */
+  color: @fg;
+}
+
+.widget-mpris > box > button:hover {
+  color: @accent;
+  background: @bg-accent;  
 }
 
 .widget-mpris > box > button:disabled {
-  /* Change player side buttons insensitive */
+  color: @fg-unf;
 }
 
 /* Buttons Grid widget */

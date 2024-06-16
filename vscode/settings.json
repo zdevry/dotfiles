@@ -7,13 +7,15 @@
     "workbench.startupEditor": "none",
     "workbench.welcomePage.walkthroughs.openOnInstall": false,
     "explorer.confirmDragAndDrop": false,
-    "terminal.integrated.gpuAcceleration": "off",
+    "terminal.integrated.gpuAcceleration": "on",
     "extensions.ignoreRecommendations": true,
-    "window.titleBarStyle": "custom",
     "clangd.path": "/usr/bin/clangd",
     "editor.acceptSuggestionOnEnter": "off",
     "editor.stickyScroll.enabled": false,
     "editor.inlayHints.enabled": "offUnlessPressed",
     "python.experiments.enabled": false,
-    "git.openRepositoryInParentFolders": "never"
+    "git.openRepositoryInParentFolders": "never",
+    "window.zoomLevel": 1,
+    "workbench.iconTheme": "material-icon-theme",
+    "window.menuBarVisibility": "toggle"
 }

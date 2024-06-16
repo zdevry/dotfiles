@@ -1,8 +1,9 @@
 {
 	"layer": "top",
 	"modules-left": ["sway/workspaces", "sway/scratchpad"],
-	"modules-center": ["sway/window"],
+	//"modules-center": ["sway/window"],
 	"modules-right": ["group/systray", "clock"],
+	"include": "$HOME/.config/waybar/window.jsonc",
 
 	// Left
 	"sway/workspaces": {
@@ -22,15 +23,15 @@
 	},
 
 	// Centre
-	"sway/window": {
-		"max-length": 50,
-		"on-click": "rofi -show window",
-		"on-click-middle": "rofi -show drun",
-		"on-click-right": "rofi-sway-window-menu",
-		"rewrite": {
-			"^$": "󰣇 "
-		}
-	},
+	//"sway/window": {
+	//	"max-length": 50,
+	//	"on-click": "rofi -show window",
+	//	"on-click-middle": "rofi -show drun",
+	//	"on-click-right": "rofi-sway-window-menu",
+	//	"rewrite": {
+	//		"^$": "󰣇 "
+	//	}
+	//},
 
 	// Right
 	"group/systray": {
