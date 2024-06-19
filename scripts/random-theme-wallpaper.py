@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
-import json
-import os
-import sys
-import random
+import json, os, sys, random
+
+WALLPAPER_DIR = os.getenv('HOME') + '/media/wallpapers/'
 
 def write_waybar_window_config(desc):
     waybar_window_conf = os.getenv('HOME') + '/dotfiles/waybar/window.jsonc'
@@ -23,7 +22,29 @@ def write_waybar_window_config(desc):
     with open(waybar_window_conf, 'w') as f:
         json.dump(config, f, indent=4)
 
-WALLPAPER_DIR = os.getenv('HOME') + '/media/wallpapers/'
+def link_colours(colour_theme):
+    DOTFILES_DIR = os.getenv('HOME') + '/dotfiles/'
+    ext_by_conf = {
+        'sway/': '.conf',
+        'swaync/': '.css',
+        'waybar/': '.css',
+        'rofi/': '.rasi',
+        'alacritty/': '.toml'
+    }
+
+    for conf in ext_by_conf:
+        dst_link = DOTFILES_DIR + conf + "colours" + ext_by_conf[conf]
+
+        if os.path.islink(dst_link):
+            os.unlink(dst_link)
+        os.symlink(colour_theme + ext_by_conf[conf], dst_link)
+
+def link_wallpaper(wallpaper):
+    wallpaper_dst = WALLPAPER_DIR + 'wallpaper'
+    if os.path.islink(wallpaper_dst):
+        os.unlink(wallpaper_dst)
+    os.symlink(wallpaper, wallpaper_dst)
+
 
 wallpapers = None
 with open(WALLPAPER_DIR + 'wallpapers.json') as fwp:
@@ -40,10 +61,13 @@ for tag in tags:
     filtered_wallpapers = [entry for entry in filtered_wallpapers if (tag in entry['tags']) == filter]
 
 if not filtered_wallpapers:
-    print('No wallpapers found, skipping filter', file=sys.stderr)
+    print('No wallpapers found, skipping filter')
     filtered_wallpapers = wallpapers
 
 wallpaper = random.choice(filtered_wallpapers)
 
+print(f'Wallpaper: {wallpaper['short-desc']} ({wallpaper['filename']}), theme: {wallpaper['theme']}')
+
 write_waybar_window_config(wallpaper['short-desc'])
-print(wallpaper['filename'], wallpaper['theme'])
+link_wallpaper(wallpaper['filename'])
+link_colours(wallpaper['theme'])

@@ -20,14 +20,6 @@ fi
 
 export WLR_DRM_DEVICES="/dev/dri/card0:/dev/dri/card1"
 
-WALLPAPER_DIR="$HOME/media/wallpapers"
-WALLPAPER_ENTRY=$(random-theme-wallpaper.py $SESSION)
-WALLPAPER_FILENAME=$(cut -d' ' -f1 <<< "$WALLPAPER_ENTRY")
-THEME=$(cut -d' ' -f2 <<< "$WALLPAPER_ENTRY")
-
-[[ -L "$WALLPAPER_DIR/wallpaper" ]] && unlink "$WALLPAPER_DIR/wallpaper"
-ln -s "$WALLPAPER_FILENAME" "$WALLPAPER_DIR/wallpaper"
-desktop-set-theme "$THEME" > /dev/null 2>&1
-
+random-theme-wallpaper.py $SESSION
 sway --unsupported-gpu > /dev/null 2>&1
 exec fish

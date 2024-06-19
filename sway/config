@@ -80,6 +80,7 @@ bindsym {
     mod4+c exec rofi-cliphist-menu
     print exec grimshot slurp
     mod4+print exec grimshot screen
+    mod4+shift+F12 exec "random-theme-wallpaper.py; desktop-update"
 
     mod4+F1 exec notif-toggle-mute
     mod4+F2 exec notif-set-volume -3%
