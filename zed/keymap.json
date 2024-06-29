@@ -1,0 +1,22 @@
+[
+  {
+    "bindings": {
+      "kp_home": ["workspace::SendKeystrokes", "home"],
+      "kp_end": ["workspace::SendKeystrokes", "end"],
+      "shift-kp_home": ["workspace::SendKeystrokes", "shift-home"],
+      "shift-kp_end": ["workspace::SendKeystrokes", "shift-end"],
+      "kp_prior": ["workspace::SendKeystrokes", "pageup"],
+      "kp_next": ["workspace::SendKeystrokes", "pagedown"],
+      "shift-kp_prior": ["workspace::SendKeystrokes", "shift-pageup"],
+      "shift-kp_next": ["workspace::SendKeystrokes", "shift-pagedown"],
+      "ctrl-kp_prior": ["workspace::SendKeystrokes", "ctrl-pageup"],
+      "ctrl-kp_next": ["workspace::SendKeystrokes", "ctrl-pagedown"]
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-enter": "editor::NewlineBelow"
+    }
+  }
+]
