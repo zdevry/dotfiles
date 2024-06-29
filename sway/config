@@ -105,7 +105,10 @@ gaps {
     bottom 7
 }
 
-include colours.conf
+client.focused #ffffff #989898 #ffffff #d0d0d0
+client.unfocused #ffffff #282828 #ffffff #424242
+client.focused_inactive #ffffff #282828 #ffffff #424242
+client.urgent #ffffff #f44747 #ffffff #ff8168
 
 for_window {
     [ workspace = "^[45]$" ] floating enable

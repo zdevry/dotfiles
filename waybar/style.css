@@ -1,4 +1,9 @@
-@import url("colours.css");
+@define-color bg #181818;
+@define-color bg-hl #303030;
+
+@define-color fg #c8c8c8;
+@define-color fg-unf #808080;
+@define-color accent #ffffff;
 
 * {
 	font-family: JetBrainsMono Nerd Font Propo;
@@ -67,8 +72,8 @@ tooltip label {
 }
 
 #workspaces button.focused {
-	background: @bg-accent;
-	border-bottom: 2px solid @accent;
+	background: @bg-hl;
+	border-bottom: 2px solid @fg;
 }
 
 #workspaces button.empty {

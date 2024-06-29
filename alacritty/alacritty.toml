@@ -1,5 +1,4 @@
 shell = "/usr/bin/fish"
-import = ["~/.config/alacritty/colours.toml"]
 
 [window]
 opacity = 0.8
@@ -60,3 +59,37 @@ bindings = [
 
 	{ key = "Enter", mods = "Control", action = "CreateNewWindow" }
 ]
+
+[colors]
+primary.foreground = "#c8c8c8"
+primary.background = "#181818"
+
+cursor = { text = "#181818", cursor = "#c8c8c8" }
+vi_mode_cursor = { text = "#181818", cursor = "#c8c8c8" }
+selection = { text = "#c8c8c8", background = "#484848" }
+
+footer_bar = { foreground = "#181818", background = "#c8c8c8" }
+
+[colors.search]
+matches = { foreground = "#d7d7d7", background = "#484848" }
+focused_match = { foreground = "#181818", background = "#c8c8c8" }
+
+[colors.normal]
+black = "#313131"
+red = "#f44747"
+green = "#6a9955"
+yellow = "#ca9f40"
+blue = "#0078d4"
+magenta = "#bc3fbc"
+cyan = "#4ec9b0"
+white = "#a0a0a0"
+
+[colors.bright]
+black = "#868686"
+red = "#ff8168"
+green = "#a2d470"
+yellow = "#d7ba7d"
+blue = "#569cd6"
+magenta = "#c586c0"
+cyan = "#91e4d3"
+white = "#d7d7d7"

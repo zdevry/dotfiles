@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+set -euxo pipefail
+
+random-wallpaper.py --dmenu "rofi -dmenu -p wallpaper"
+
+swaymsg reload
+pkill waybar -SIGUSR2

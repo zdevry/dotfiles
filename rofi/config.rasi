@@ -1,7 +1,12 @@
-@import "colours.rasi"
-
 * {
 	font: "JetBrainsMonoNL Nerd Font Propo Medium 12";
+	
+    bg: rgba(24, 24, 24, 0.8);
+	bg-hl: #303030;
+
+	fg: #c8c8c8;
+	fg-unf: #808080;
+	accent: #ffffff;
 }
 
 window {
@@ -66,47 +71,47 @@ element {
 }
 
 element.normal.normal {
-	background-color: @bg;
+	background-color: transparent;
 	text-color: @fg;
 }
 
 element.normal.urgent {
-	background-color: @bg;
+	background-color: transparent;
 	text-color: @accent;
 }
 
 element.normal.active {
-	background-color: @bg;
+	background-color: transparent;
 	text-color: @accent;
 }
 
 element.selected.normal {
-	background-color: @bg-accent;
-	text-color: @fg;
+	background-color: @bg-hl;
+	text-color: @accent;
 }
 
 element.selected.urgent {
-	background-color: @bg-accent;
+	background-color: @bg-hl;
 	text-color: @accent;
 }
 
 element.selected.active {
-	background-color: @bg-accent;
+	background-color: @bg-hl;
 	text-color: @accent;
 }
 
 element.alternate.normal {
-	background-color: @bg;
+	background-color: transparent;
 	text-color: @fg;
 }
 
 element.alternate.urgent {
-	background-color: @bg;
+	background-color: transparent;
 	text-color: @accent;
 }
 
 element.alternate.active {
-	background-color: @bg;
+	background-color: transparent;
 	text-color: @accent;
 }
 

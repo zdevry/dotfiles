@@ -1,6 +1,6 @@
 /* Title widget */
 .widget-title {
-  background-color: @bg;
+  background-color: transparent;
   color: @fg;
   margin: 0px 8px 0px 16px;
   font-size: 18px;
@@ -22,7 +22,7 @@
 
 /* DND widget */
 .widget-dnd {
-  background-color: @bg;
+  background-color: transparent;
   color: @fg;
   margin: 10px 16px 0px 24px;
   font-size: 14px;
@@ -36,7 +36,7 @@
 }
 
 .widget-dnd > switch:checked {
-  background: @accent;
+  background: @fg;
   border: none;
 }
 
@@ -47,8 +47,6 @@
 }
 
 /* Mpris widget */
-@define-color mpris-album-art-overlay rgba(0, 0, 0, 0.55);
-@define-color mpris-button-hover rgba(0, 0, 0, 0.50);
 .widget-mpris {
   box-shadow: none;
 }
@@ -57,9 +55,10 @@
   padding: 8px;
   padding: 16px;
   margin: 0px 20px;
-  background-color: @bg-hl;
+  background-color: @bg;
   border-radius: 12px;
   box-shadow: none;
+  border: 1px solid @fg;
 }
 
 .widget-mpris .widget-mpris-player .widget-mpris-album-art {
@@ -77,6 +76,7 @@
 }
 
 .widget-mpris .widget-mpris-player > box > button {
+  background: @bg-hl;
   color: @fg;
 }
 
@@ -101,7 +101,7 @@
 /* Buttons Grid widget */
 .widget-buttons-grid {
 	margin: 0px;
-	background-color: @bg;
+	background-color: transparent;
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
@@ -122,7 +122,7 @@
 
 /* Volume widget */
 .widget-volume {
-  background-color: @bg;
+  background-color: transparent;
   color: @fg;
 }
 
@@ -148,13 +148,13 @@
 }
 
 .widget-volume trough highlight {
-  background: @accent;
-  border: 1px solid @accent;
+  background: @fg;
+  border: 1px solid @fg;
 }
 
 .per-app-volume {
   font-size: 14px;
-  background-color: @bg;
+  background-color: transparent;
   color: @fg;
   padding: 0px 0px 0px 0px;
   margin: 0px 16px 16px 0px;
@@ -163,7 +163,7 @@
 /* Backlight widget */
 .widget-backlight {
   color: @fg;
-  background-color: @bg;
+  background-color: transparent;
 }
 
 .widget-backlight scale {
@@ -182,6 +182,6 @@
 }
 
 .widget-backlight trough highlight {
-  background: @accent;
-  border: 1px solid @accent;
+  background: @fg;
+  border: 1px solid @fg;
 }

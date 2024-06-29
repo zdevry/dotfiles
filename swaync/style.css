@@ -1,4 +1,11 @@
-@import url("colours.css");
+@define-color bg #181818;
+@define-color bg-hl #303030;
+@define-color bg-accent #484848;
+@define-color bg-transparent rgba(24, 24, 24, 0.8);
+
+@define-color fg #c8c8c8;
+@define-color fg-unf #808080;
+@define-color accent #ffffff;
 
 * {
   font-family: JetBrainsMono Nerd Font Propo;
@@ -41,9 +48,9 @@
   /* The actual notification */
   color: @fg;
   border-radius: 12px;
-  border: 2px solid @fg-unf;
+  border: 1px solid @fg;
   padding: 0;
-  background: @bg;
+  background: @bg-transparent;
 }
 
 .notification-row .notification-background .notification.low {
@@ -69,7 +76,7 @@
 
 .notification-row .notification-background .notification .notification-action:hover, .notification-row .notification-background .notification .notification-default-action:hover {
   -gtk-icon-effect: none;
-  background: @bg-hl;
+  background: @bg;
 }
 
 .notification-row .notification-background .notification .notification-default-action {
@@ -143,8 +150,8 @@
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content progress {
-  background: @accent;
-  border: 1px solid @accent;
+  background: @fg;
+  border: 1px solid @fg;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .body-image {
@@ -265,7 +272,7 @@
 
 .control-center {
   /* The Control Center which contains the old notifications + widgets */
-  background: @bg;
+  background: @bg-transparent;
   color: @fg;
   border: 1px solid @fg;
   border-radius: 12px;
@@ -292,7 +299,7 @@
 
 .control-center .control-center-list .notification .notification-default-action:hover,
 .control-center .control-center-list .notification .notification-action:hover {
-  background-color: @bg-hl;
+  background-color: @bg;
 }
 
 .blank-window {
