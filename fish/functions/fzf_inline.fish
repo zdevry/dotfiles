@@ -4,14 +4,17 @@ function fzf_inline
     else
         if [ -z "$dir" ]
             set -lx FZF_DEFAULT_COMMAND "fd -LHt $argv[1]"
-            if set -l file (fzf --height=40%)
-                commandline -i (string escape --no-quoted "$file")
+            for file in (fzf --height=40% --multi)
+                commandline -i (string escape --no-quoted -- "$file")
+                commandline -i ' '
             end
         else
             set -lx FZF_DEFAULT_COMMAND "fd -LHt $argv[1] . $dir"
-            if set -l file (fzf --height=40%)
-                commandline -i (string replace -r "^$dir" "" "$file"\
-                    | string escape --no-quoted)
+            commandline -tr ''
+            for file in (fzf --height=40% --multi)
+                commandline -i (string escape --no-quoted -- "$file"\
+                    | string replace -r "^$HOME" "~")
+                commandline -i ' '
             end
         end
     end

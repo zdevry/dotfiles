@@ -8,7 +8,7 @@ function fish_prompt
 
     set -l cwd (prompt_pwd --dir-length 0)
 
-    if [ "$TERM" = "alacritty" ]
+    if [ "$TERM" != "linux" ]
         echo -n $err_code_color"∴ $previous_status$(set_color normal) "
         echo -n "$(set_color green)󰉋 $cwd"
 
@@ -21,7 +21,7 @@ function fish_prompt
         echo -n "$(set_color blue -o)→ $(set_color normal)"
     else
         echo -n $err_code_color"[$previous_status]$(set_color normal) "
-        echo -n "$(set_color green)$cwd "        
+        echo -n "$(set_color green)$cwd "
         echo -n "$(set_color blue -o)\$ $(set_color normal)"
     end
 end

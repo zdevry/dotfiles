@@ -14,6 +14,7 @@ else
         "--prompt='→ ' --pointer=→"
 end
 
-bind \cf "fzf_inline file"
-bind \eF "fzf_inline directory"
-bind \cj "fzf_cd"
+bind \ef "fzf_inline file"
+bind \ed "fzf_inline directory"
+bind \eg "fzf_cd"
+bind \ew "fzf_walker"
